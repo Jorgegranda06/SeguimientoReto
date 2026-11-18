@@ -1,0 +1,26 @@
+# Variables de entorno y credenciales
+.env
+.env.*
+!.env.example
+
+# Entornos virtuales de Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Dependencias de Node.js
+node_modules/
+
+# Compilaciones de Angular
+dist/
+.angular/
+
+# Archivos temporales
+*.log
+.DS_Store
+Thumbs.db
+
+# Archivos locales de Android
+android/local.properties
+.gradle/
