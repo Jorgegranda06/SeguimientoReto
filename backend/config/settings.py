@@ -2,6 +2,7 @@
 """Configuración de Django. Los valores sensibles se leen de backend/.env."""
 import os
 from pathlib import Path
+from datetime import date
 
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
@@ -33,6 +34,11 @@ def lista(nombre, por_defecto=''):
 SECRET_KEY = variable('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('1', 'true', 'yes')
 ALLOWED_HOSTS = lista('ALLOWED_HOSTS', 'localhost,127.0.0.1')
+
+# Calendario académico: semanas de seguimiento
+SEMESTRE_INICIO = date.fromisoformat(variable('SEMESTRE_INICIO', '2026-10-05'))
+SEMANA_DESDE = int(variable('SEMANA_DESDE', '7'))
+SEMANA_HASTA = int(variable('SEMANA_HASTA', '15'))
 
 # Aplicaciones
 INSTALLED_APPS = [
@@ -101,10 +107,18 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'
+    },
 ]
 
 # Idioma y zona horaria

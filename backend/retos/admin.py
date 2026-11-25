@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 
-from .models import Avance, Reto
+from .models import Avance, Reto, TareaSemanal
 
 
 class AvanceInline(admin.TabularInline):
@@ -21,3 +21,17 @@ class RetoAdmin(admin.ModelAdmin):
 class AvanceAdmin(admin.ModelAdmin):
     list_display = ('reto', 'fecha', 'porcentaje')
     list_filter = ('reto',)
+
+
+@admin.register(TareaSemanal)
+class TareaSemanalAdmin(admin.ModelAdmin):
+    list_display = (
+        'reto',
+        'semana',
+        'fecha_inicio',
+        'fecha_fin',
+        'porcentaje',
+    )
+    list_filter = ('semana', 'reto')
+    search_fields = ('reto__titulo', 'descripcion')
+    ordering = ('reto', 'semana')

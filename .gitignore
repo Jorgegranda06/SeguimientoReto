@@ -22,5 +22,9 @@ dist/
 Thumbs.db
 
 # Archivos locales de Android
-android/local.properties
+local.properties
 .gradle/
+frontend/android/app/build/
+frontend/android/build/
+*.jks
+*.keystore
